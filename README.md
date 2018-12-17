@@ -1,4 +1,4 @@
-# BITCOIN APP CHART
+# React Array Manipulation
 
 > Run your client with a single command
 
