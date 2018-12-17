@@ -1,44 +1,92 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# BITCOIN APP CHART
 
-## Available Scripts
+> Run your client with a single command
 
-In the project directory, you can run:
+## Quick Start
 
-### `npm start`
+``` bash
+# Install dependencies for client
+yarn install
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Run your app
+yarn start
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+# Client on http://localhost:3000
+```
 
-### `npm test`
+## Folder Distribution
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The workflow I currently use is as follows:
 
-### `npm run build`
+- public
+    - index.html 
+- src
+    - components
+        ContainerChart.js
+    - App.js
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## What is this app about
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+We're creating an application that graphs a random set of data. The idea of this project was to show how to manipulate a JSON to obtain the data we wanted. Check more information on my [blog](https://radinax.github.io/React-Personal-Blog-Gatsby/6-second-project/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Challenge](README_Image.png)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Check it live [here](http://abhorrent-metal.surge.sh/).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+We make use of Create-React-App for a quick setup, then we install **Apex Charts** which is great library for displaying data through different types of Charts and is compatible with React JS. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The structure of the Library looks like this:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+ options: {
+              chart: {
+                  //background: '#f4f4f4',
+              foreColor: '#333'
+              },
+              xaxis: {
+                  categories: []
+              },
+              fill: {
+                  colors: ['#f44336']
+              },
+              dateLabels: {
+                  enabled: false
+              },
+              title: {
+                  text: 'Bitcoin Price Chart',
+                  align: 'center',
+                  margin: 20,
+                  offsetY: 20,
+                  style: {
+                      fontSize: '25px'
+                  }
+              }
+            },
+            series: [{
+                name: 'Numbers',
+		            data: []
+            }]
+        }
+```
 
-## Learn More
+The two important parts of this structure are **categories** where the data related to the X axis is going to be at, and **data** which is an empty array for now as well as categories which is where the Bitcoin price is going to be located.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Finally we make use of the **Chart** component from **react-apexcharts**:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+<Chart 
+    options = {this.state.options}
+    series = {this.state.series}
+    type="line"
+    height= "450"
+    width= "100%"
+/>
+```
+## Closure
+
+This app was mainly for education purpose to show how to manipulate data using Object.key, Object.value and .map to get the data we want which can be hard for people starting out.
+
+**Made by Adrian Beria.**
+
+**Web Developer.**

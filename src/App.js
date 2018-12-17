@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ArrayMap from './components/ArrayMap';
+
+const mock_lines = () => {
+  var lines = {
+      c1: {
+          e1: {
+              data: []
+          },
+          e2: {
+              data: []
+          }
+      },
+      c2: {
+          e1: {
+              data: []
+          },
+          e2: {
+              data: []
+          }
+      }
+  };
+  let j = 0;
+  Object.keys(lines).map((c, ci) => {
+      Object.keys(lines[c]).map((e, ei) => {
+          for (let i = 0; i < 5; i++) {
+              lines[c][e].data.push({ value: i + j, time: i });
+          };
+          j = j + 3;
+      });
+  });
+  return lines;
+};
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <ArrayMap data={mock_lines()} />
       </div>
     );
   }
